@@ -14,7 +14,7 @@ tags:
 
 |版本号  | 作者  | 修改记录  | 完成日期
 | :----------:| :-----------:| :----------:| :---------------:|
-|v1.0   |fiendo      |v1.0       |2019-10-13
+|v1.0   |fiendo      |v1.0       |2019-10-15
 
 ### 目录
 * [1.缘由](#缘由)
@@ -39,15 +39,63 @@ tags:
 
 * 系统：centos7
 * 工具包: tar,openssl
-* 待处理的文件: xxx.txt (本文准备的文件大小在4G左右)
+* 待处理的文件: test.txt (本文准备的文件大小在4G左右)
 
 **<h3>实施并验证</h3>**
 
+tar指令核心参数：
+
+|参数  | 说明 |
+| :----------:| :-----------:| 
+|-j   |以bzip2方式压缩      |
+|-z   |以gzip方式压缩      |
+|-c   |建立新的备份文件      |
+|-f   |指定备份文件      |
+|-v   |显示指令执行过程      |
+|-x   |从备份文件中还原文件      |
+
 **1.使用tar进行压缩和解压**
 
-**1.使用tar + openssl进行压缩和解压**
+压缩： tar -jcvf ./test.tar.bz2 ./test.txt
 
+解压： tar -jxf ./test.tar.bz2
+
+**2.使用tar + openssl进行压缩和解压**
+
+压缩： tar -jcvf ./test.txt | openssl des3 -salt -k <password> -out ./test.tar.bz2
+
+解压： openssl des3 -d -k <password> -salt -in /test.tar.bz2 | tar jxf -
 
 ## <h2>为什么采用以上方式</h2>
 
+**采用bzip2**
 
+相对于gzip压缩速度慢，但压缩效果好
+
+**采用gzip**
+
+相对bzip2压缩速度快，但压缩效果差
+
+**对比实例**
+
+压缩981M的text.txt
+
+**gzip：**
+
+time tar  -zcvf ./test.tar.gz ./test.txt
+
+real    0m22.177s
+user    0m21.874s
+sys     0m1.006s
+
+99M test.tar.bz2
+
+**bzip2：**
+
+time tar -jcvf test.tar.bz2 ./test.txt
+
+real    3m1.416s
+user    3m0.875s
+sys     0m1.638s
+
+131M test.tar.gz
