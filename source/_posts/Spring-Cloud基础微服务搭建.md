@@ -151,7 +151,7 @@ cd /home/fiendo/spring-cloud-frame/eureka/bin
 
 若无异常会看到有两个Eureka节点已经启动
 
-![Eureka](./img/article/springcloudeureka01.png)
+![Eureka](/img/article/springcloudeureka01.png)
 
 ### 3.2.3.2启动Zuul网关
 
@@ -170,7 +170,7 @@ cd /home/fiendo/spring-cloud-frame/zuul/bin
 
 若无异常会看到有两个Zuul节点已经启动
 
-![Eureka](./img/article/springcloudzuul01.png)
+![Eureka](/img/article/springcloudzuul01.png)
 
 ### 3.2.3.3启动HelloWorld服务
 
@@ -187,7 +187,7 @@ cd /home/fiendo/spring-cloud-frame/service-helloworld/bin
 
 若无异常会看到有两个service-helloworld节点已经启动
 
-![Eureka](./img/article/springcloudhelloworld01.png)
+![Eureka](/img/article/springcloudhelloworld01.png)
 
 **通过Zuul网关访问Hello-World微服务**
 
@@ -195,7 +195,7 @@ cd /home/fiendo/spring-cloud-frame/service-helloworld/bin
 
 访问具体服务 http://192.168.1.150:12002/service-helloworld/helloworld
 
-![HelloWorld](./img/article/springcloudhelloworld02.png)
+![HelloWorld](/img/article/springcloudhelloworld02.png)
 
 **至此我们就已经搭建完毕一套分布式的微服务基础框架**
 
