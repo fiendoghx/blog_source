@@ -201,7 +201,7 @@ cd /home/fiendo/spring-cloud-frame/service-helloworld/bin
 
 ## 4.相关说明</h2>
 
-本文基于springboot1搭建的微服务，最初spring-cloud官方给出的方案就是eureka+zuul,本文也是根据最初的方案进行搭建。直到spring-boot2之后迟迟等不到zuul2的更新，才开始出现的gateway，具体springboot2搭建，移步[传送门](https://fiendoghx.github.io/2019/10/20/Spring-Cloud%E5%9F%BA%E7%A1%80%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA(springboot2)/)
+本文基于springboot1搭建的微服务，最初spring-cloud官方给出的方案就是eureka+zuul,本文也是根据最初的方案进行搭建。直到spring-boot2之后迟迟等不到zuul2的更新，才开始出现的gateway，具体springboot2搭建，移步[传送门](https://fiendoghx.github.io/2019/10/20/Spring-Cloud%E5%9F%BA%E7%A1%80%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA-springboot2/)
 
 ## 5.FQA
 
