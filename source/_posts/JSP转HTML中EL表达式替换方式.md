@@ -41,105 +41,124 @@ HandleBar基础用法
 <!--菜单输出开始-->
 <ul id="menu_ul">
 <c:forEach var="firstMenu" items="${menus}" varStatus="status">
-	<li class="second" <c:if test="${!empty firstMenu.URL}"> onclick="navClick('${firstMenu.ID}','${firstMenu.NAME}',
-		<c:choose>
-			<c:when test="${fn:startsWith(firstMenu.URL, 'http')}">'${firstMenu.URL}'</c:when>
-			<c:otherwise>webRoot + '${firstMenu.URL}'</c:otherwise>
-		</c:choose> )"</c:if>>
-		<!--一级菜单输出-->
-		<c:choose>
-			<c:when test="${fn:contains(firstMenu.iconClass, '/')}">
-				<img src="<%=webRoot%>${firstMenu.iconClass}" />
-			</c:when>
-			<c:otherwise>
-				<i class='<c:if test="${!empty firstMenu.iconClass}">${firstMenu.iconClass}</c:if><c:if test="${empty firstMenu.iconClass}">icon-map-marker</c:if>' title='${firstMenu.NAME}'></i>
-			</c:otherwise>
-		</c:choose>
-		<p>${firstMenu.NAME}</p>
+  <li class="second" <c:if test="${!empty firstMenu.URL}"> 
+  onclick="navClick('${firstMenu.ID}','${firstMenu.NAME}',
+    <c:choose>
+      <c:when test="${fn:startsWith(firstMenu.URL, 'http')}">
+      '${firstMenu.URL}'</c:when>
+      <c:otherwise>webRoot + '${firstMenu.URL}'</c:otherwise>
+    </c:choose> )"</c:if>>
+    <!--一级菜单输出-->
+    <c:choose>
+      <c:when test="${fn:contains(firstMenu.iconClass, '/')}">
+        <img src="<%=webRoot%>${firstMenu.iconClass}" />
+      </c:when>
+      <c:otherwise>
+        <i class='<c:if test="${!empty firstMenu.iconClass}">
+        ${firstMenu.iconClass}</c:if>
+        <c:if test="${empty firstMenu.iconClass}">icon-map-marker</c:if>'
+        title='${firstMenu.NAME}'></i>
+      </c:otherwise>
+    </c:choose>
+    <p>${firstMenu.NAME}</p>
 
-		<!-- 二层 -->
-		<ul>
-			<c:forEach var="secondMenu" items="${firstMenu.senconds}">
-				<li <c:if test="${!empty secondMenu.URL}"> onclick="navClick('${secondMenu.ID}','${secondMenu.NAME}',
-					<c:choose>
-						<c:when test="${fn:startsWith(secondMenu.URL, 'http')}">'${secondMenu.URL}'</c:when>
-						<c:otherwise>webRoot + '${secondMenu.URL}'</c:otherwise>
-					</c:choose> )"</c:if>>
-					<i class='<c:if test="${!empty secondMenu.iconClass}">${secondMenu.iconClass}</c:if><c:if test="${empty secondMenu.iconClass}">icon-info-sign</c:if>'></i>
-					<span>${secondMenu.NAME}
-						<c:if test="${!empty secondMenu.thirds}">
-							<i class="icon-angle-right"></i>
-						</c:if>
-					</span>
-					<!--二级菜单输出-->
-					<c:if test="${!empty secondMenu.thirds}">
+    <!-- 二层 -->
+    <ul>
+      <c:forEach var="secondMenu" items="${firstMenu.senconds}">
+        <li <c:if test="${!empty secondMenu.URL}"> 
+        onclick="navClick('${secondMenu.ID}','${secondMenu.NAME}',
+          <c:choose>
+            <c:when test="${fn:startsWith(secondMenu.URL, 'http')}">
+      '${secondMenu.URL}'</c:when>
+            <c:otherwise>webRoot + '${secondMenu.URL}'</c:otherwise>
+          </c:choose> )"</c:if>>
+          <i class='<c:if test="${!empty secondMenu.iconClass}">
+      ${secondMenu.iconClass}</c:if>
+      <c:if test="${empty secondMenu.iconClass}">icon-info-sign
+      </c:if>'></i>
+          <span>${secondMenu.NAME}
+            <c:if test="${!empty secondMenu.thirds}">
+              <i class="icon-angle-right"></i>
+            </c:if>
+          </span>
+          <!--二级菜单输出-->
+          <c:if test="${!empty secondMenu.thirds}">
 
-						<c:if test="${secondMenu.haveFourth!=1}">
+            <c:if test="${secondMenu.haveFourth!=1}">
 
-							<!-- 三层 -->
-							<ul class='fourth'>
+              <!-- 三层 -->
+              <ul class='fourth'>
 
-								<c:forEach var="thirdMenu" items="${secondMenu.thirds}">
-									<!--三级菜单输出-->
-									<li class='third orange width2 height1' <c:if test="${!empty thirdMenu.URL}"> onclick="navClick('${thirdMenu.ID}','${thirdMenu.NAME}',
-										<c:choose>
-											<c:when test="${fn:startsWith(thirdMenu.URL, 'http')}">'${thirdMenu.URL}'</c:when>
-											<c:otherwise>webRoot + '${thirdMenu.URL}'</c:otherwise>
-										</c:choose> )"</c:if>>
+                <c:forEach var="thirdMenu" items="${secondMenu.thirds}">
+                  <!--三级菜单输出-->
+                  <li class='third orange width2 height1' 
+          <c:if test="${!empty thirdMenu.URL}"> 
+          onclick="navClick('${thirdMenu.ID}','${thirdMenu.NAME}',
+                    <c:choose>
+                      <c:when test="${fn:startsWith(thirdMenu.URL, 'http')}">
+            '${thirdMenu.URL}'</c:when>
+                      <c:otherwise>webRoot + '${thirdMenu.URL}'</c:otherwise>
+                    </c:choose> )"</c:if>>
 
-						<span>${thirdMenu.NAME}</span>
-						<img src="<%=webRoot%>/page/images/img.png" onerror="this.src='<%=webRoot%>/page/images/unvisited.png'" />
+            <span>${thirdMenu.NAME}</span>
+            <img src="<%=webRoot%>/page/images/img.png" 
+      onerror="this.src='<%=webRoot%>/page/images/unvisited.png'" />
+            </li>
+            </c:forEach>
+            </ul>
 
+          </c:if>
 
+          <c:if test="${secondMenu.haveFourth==1}">
+            <ul class="thirds">
+              <c:forEach var="thirdMenu" items="${secondMenu.thirds}">
+                <!--三级菜单输出-->
+                <li <c:if test="${!empty thirdMenu.URL}"> 
+        onclick="navClick('${thirdMenu.ID}','${thirdMenu.NAME}',
+                  <c:choose>
+                    <c:when test="${fn:startsWith(thirdMenu.URL, 'http')}">
+          '${thirdMenu.URL}'</c:when>
+                    <c:otherwise>webRoot + '${thirdMenu.URL}'</c:otherwise>
+                  </c:choose> )"</c:if>>
+          <i class='<c:if test="${!empty thirdMenu.iconClass}">
+      ${thirdMenu.iconClass}</c:if>
+      <c:if test="${empty thirdMenu.iconClass}">icon-info-sign</c:if>'></i>
+          <span>${thirdMenu.NAME}
+            <c:if test="${!empty thirdMenu.fourths}">
+              <i class="icon-angle-right"></i>
+            </c:if>
+          </span>
+          <!--二级菜单输出-->
+          <c:if test="${!empty thirdMenu.fourths}">
 
-						</li>
-						</c:forEach>
-						</ul>
+            <ul class='fourth'>
+              <c:forEach var="fourthMenu" items="${thirdMenu.fourths}">
+                <li class='third orange width2 height1' 
+        <c:if test="${!empty fourthMenu.URL}"> 
+        onclick="navClick('${fourthMenu.ID}','${fourthMenu.NAME}',
+                  <c:choose>
+                    <c:when test="${fn:startsWith(fourthMenu.URL, 'http')}">
+          '${fourthMenu.URL}'</c:when>
+                    <c:otherwise>webRoot + '${fourthMenu.URL}'</c:otherwise>
+                  </c:choose> )"</c:if>>
+          <span>${fourthMenu.NAME}</span>
+          <img src="<%=webRoot%>/page/images/img.png"  
+      onerror="this.src='<%=webRoot%>/page/images/unvisited.png'" />
 
-					</c:if>
+          </li>
+          </c:forEach>
+          </ul>
+          </c:if>
+          </li>
+          </c:forEach>
+          </ul>
+          </c:if>
+          </c:if>
+        </li>
 
-					<c:if test="${secondMenu.haveFourth==1}">
-						<ul class="thirds">
-							<c:forEach var="thirdMenu" items="${secondMenu.thirds}">
-								<!--三级菜单输出-->
-								<li <c:if test="${!empty thirdMenu.URL}"> onclick="navClick('${thirdMenu.ID}','${thirdMenu.NAME}',
-									<c:choose>
-										<c:when test="${fn:startsWith(thirdMenu.URL, 'http')}">'${thirdMenu.URL}'</c:when>
-										<c:otherwise>webRoot + '${thirdMenu.URL}'</c:otherwise>
-									</c:choose> )"</c:if>>
-					<i class='<c:if test="${!empty thirdMenu.iconClass}">${thirdMenu.iconClass}</c:if><c:if test="${empty thirdMenu.iconClass}">icon-info-sign</c:if>'></i>
-					<span>${thirdMenu.NAME}
-						<c:if test="${!empty thirdMenu.fourths}">
-							<i class="icon-angle-right"></i>
-						</c:if>
-					</span>
-					<!--二级菜单输出-->
-					<c:if test="${!empty thirdMenu.fourths}">
-
-						<ul class='fourth'>
-							<c:forEach var="fourthMenu" items="${thirdMenu.fourths}">
-								<li class='third orange width2 height1' <c:if test="${!empty fourthMenu.URL}"> onclick="navClick('${fourthMenu.ID}','${fourthMenu.NAME}',
-									<c:choose>
-										<c:when test="${fn:startsWith(fourthMenu.URL, 'http')}">'${fourthMenu.URL}'</c:when>
-										<c:otherwise>webRoot + '${fourthMenu.URL}'</c:otherwise>
-									</c:choose> )"</c:if>>
-					<span>${fourthMenu.NAME}</span>
-					<img src="<%=webRoot%>/page/images/img.png"  onerror="this.src='<%=webRoot%>/page/images/unvisited.png'" />
-
-					</li>
-					</c:forEach>
-					</ul>
-					</c:if>
-					</li>
-					</c:forEach>
-					</ul>
-					</c:if>
-					</c:if>
-				</li>
-
-			</c:forEach>
-		</ul>
-	</li>
+      </c:forEach>
+    </ul>
+  </li>
 </c:forEach>
 </ul>
 ```
@@ -147,115 +166,119 @@ HandleBar基础用法
 **更改之后的HandleBar表达式**
 ```
 <script id="menu_html" type="text/x-handlebars-template">
-    {{!-- 菜单输出开始 --}}
-    {{#each menus}}
+{{!-- 菜单输出开始 --}}
+{{#each menus}}
 
-    {{!-- 一级菜单输出 --}}
+{{!-- 一级菜单输出 --}}
+{{#if URL}}
+<li class="second" onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
+  {{else}}
+<li class="second">
+  {{/if}}
+
+  {{#if iconImg}}
+  <img src="{{iconImg}}"/>
+  {{else}}
+  {{#if iconClass}}
+  <i class="{{iconClass}}" title="{{NAME}}"></i>
+  {{else}}
+  <i class="icon-map-marker" title="{{NAME}}"></i>
+  {{/if}}
+  {{/if}}
+
+
+  <p>{{NAME}}</p>
+
+  {{!-- 二级菜单输出 --}}
+  <ul>
+    {{#each seconds}}
+
     {{#if URL}}
-    <li class="second" onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
-        {{else}}
-    <li class="second">
-        {{/if}}
+    <li onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
+      {{else}}
+    <li>
+      {{/if}}
 
-        {{#if iconImg}}
-        <img src="{{iconImg}}"/>
-        {{else}}
-        {{#if iconClass}}
-        <i class="{{iconClass}}" title="{{NAME}}"></i>
-        {{else}}
-        <i class="icon-map-marker" title="{{NAME}}"></i>
-        {{/if}}
-        {{/if}}
+      {{#if iconClass}}
+      <i class="{{iconClass}}" title="{{NAME}}"></i>
+      {{else}}
+      <i class="icon-info-sign" title="{{NAME}}"></i>
+      {{/if}}
 
+      {{#if thirds}}
+      <span>{{NAME}}<i class="icon-angle-right"></i></span>
+      {{else}}
+      <span>{{NAME}}</span>
+      {{/if}}
 
-        <p>{{NAME}}</p>
+      {{!-- 三级菜单输出 --}}
+      {{#if haveFourth}}
+      <ul class="thirds">
+        {{#each thirds}}
 
-        {{!-- 二级菜单输出 --}}
-        <ul>
-            {{#each seconds}}
+        {{#if URL}}
+        <li onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
+          {{else}}
+        <li>
+          {{/if}}
 
+          {{#if iconClass}}
+          <i class="{{iconClass}}" title="{{NAME}}"></i>
+          {{else}}
+          <i class="icon-info-sign" title="{{NAME}}"></i>
+          {{/if}}
+
+          {{#if fourths}}
+          <span>{{NAME}}<i class="icon-angle-right"></i></span>
+          <ul class='fourth'>
+            {{#each fourths}}
             {{#if URL}}
-            <li onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
-                {{else}}
+            <li class='third orange width2 height1' 
+      onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
+              {{else}}
             <li>
-                {{/if}}
-
-                {{#if iconClass}}
-                <i class="{{iconClass}}" title="{{NAME}}"></i>
-                {{else}}
-                <i class="icon-info-sign" title="{{NAME}}"></i>
-                {{/if}}
-
-                {{#if thirds}}
-                <span>{{NAME}}<i class="icon-angle-right"></i></span>
-                {{else}}
-                <span>{{NAME}}</span>
-                {{/if}}
-
-                {{!-- 三级菜单输出 --}}
-                {{#if haveFourth}}
-                <ul class="thirds">
-                    {{#each thirds}}
-
-                    {{#if URL}}
-                    <li onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
-                        {{else}}
-                    <li>
-                        {{/if}}
-
-                        {{#if iconClass}}
-                        <i class="{{iconClass}}" title="{{NAME}}"></i>
-                        {{else}}
-                        <i class="icon-info-sign" title="{{NAME}}"></i>
-                        {{/if}}
-
-                        {{#if fourths}}
-                        <span>{{NAME}}<i class="icon-angle-right"></i></span>
-                        <ul class='fourth'>
-                            {{#each fourths}}
-                            {{#if URL}}
-                            <li class='third orange width2 height1' onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
-                                {{else}}
-                            <li>
-                                {{/if}}
-                                <span>{{NAME}}</span>
-                                <img src="./images/nav_default.jpg" onerror="this.src='./images/unvisited.png'"/>
-                            </li>
-                            {{/each}}
-
-                        </ul>
-                        {{else}}
-                        <span>{{NAME}}</span>
-                        {{/if}}
-                        {{/each}}
-                </ul>
-
-                {{else}}
-
-                {{#if thirds}}
-                <ul class='fourth'>
-                    {{#each thirds}}
-
-                    {{#if URL}}
-                    <li class='third orange width2 height1' onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
-                        {{else}}
-                    <li>
-                        {{/if}}
-                        <span>{{NAME}}</span>
-                        <img src="./images/nav_default.jpg" onerror="this.src='./images/unvisited.png'"/>
-                    </li>
-                    {{/each}}
-                </ul>
-                {{/if}}
-
-                {{/if}}
-
+              {{/if}}
+              <span>{{NAME}}</span>
+              <img src="./images/nav_default.jpg" 
+        onerror="this.src='./images/unvisited.png'"/>
             </li>
             {{/each}}
-        </ul>
+
+          </ul>
+          {{else}}
+          <span>{{NAME}}</span>
+          {{/if}}
+          {{/each}}
+      </ul>
+
+      {{else}}
+
+      {{#if thirds}}
+      <ul class='fourth'>
+        {{#each thirds}}
+
+        {{#if URL}}
+        <li class='third orange width2 height1' 
+    onclick="navClick('{{ID}}','{{NAME}}','{{URL}}')">
+          {{else}}
+        <li>
+          {{/if}}
+          <span>{{NAME}}</span>
+          <img src="./images/nav_default.jpg" 
+      onerror="this.src='./images/unvisited.png'"/>
+        </li>
+        {{/each}}
+      </ul>
+      {{/if}}
+
+      {{/if}}
 
     </li>
     {{/each}}
+  </ul>
+
+</li>
+{{/each}}
 </script>
 ```
 
@@ -294,7 +317,8 @@ HandleBar基础用法
 
     function eachSecondsNav(data) {
         for(let item in data){
-            //若有4层导航，样式等需要替换，由于HandleBar的IF/ELSE判断无法判断具体逻辑，只能判断非空，故作此处理
+            /*若有4层导航，样式等需要替换，由于HandleBar的
+      IF/ELSE判断无法判断具体逻辑，只能判断非空，故作此处理*/
             if (data[item].haveFourth === -1) {
                 data[item].haveFourth = '';
             }
@@ -339,118 +363,117 @@ HandleBar基础用法
 **源测试数据:**
 ```
 {
-    "menus": [
-        
+  "menus": [
+    {
+      "ID": "a25b2t4aastb",
+      "CREATEDATETIME": 1484647359000,
+      "DESCRIPTION": "",
+      "ICONCLS": "",
+      "NAME": " 视图管理",
+      "SEQ": 5,
+      "TARGET": "",
+      "UPDATEDATETIME": 1503631792000,
+      "URL": "",
+      "SYRESOURCE_ID": "",
+      "SYRESOURCETYPE_ID": "0",
+      "color": "",
+      "iconClass": "icon-sitemap\t",
+      "seconds": [
         {
-            "ID": "a25b2t4aastb",
-            "CREATEDATETIME": 1484647359000,
-            "DESCRIPTION": "",
-            "ICONCLS": "",
-            "NAME": " 视图管理",
-            "SEQ": 5,
-            "TARGET": "",
-            "UPDATEDATETIME": 1503631792000,
-            "URL": "",
-            "SYRESOURCE_ID": "",
-            "SYRESOURCETYPE_ID": "0",
-            "color": "",
-            "iconClass": "icon-sitemap\t",
-            "seconds": [
-                {
-                    "ID": "ab542b5b25a",
-                    "CREATEDATETIME": 1517818707000,
-                    "DESCRIPTION": "",
-                    "ICONCLS": "ext-icon-folder_user",
-                    "NAME": "用户视图",
-                    "SEQ": 4,
-                    "TARGET": "",
-                    "UPDATEDATETIME": 1517818707000,
-                    "URL": "http://www.baidu.com",
-                    "SYRESOURCE_ID": "haerhh123515",
-                    "SYRESOURCETYPE_ID": "0",
-                    "haveFourth": -1,
-                    "thirds": []
-                }
-            ]
-        },
-        {
-            "ID": "fawfaf244",
-            "CREATEDATETIME": 1458248395000,
-            "DESCRIPTION": "管理系统的资源、角色、机构、用户等信息",
-            "ICONCLS": "",
-            "NAME": "系统管理",
-            "SEQ": 40,
-            "TARGET": "",
-            "UPDATEDATETIME": 1502706964000,
-            "URL": "",
-            "SYRESOURCE_ID": "",
-            "SYRESOURCETYPE_ID": "0",
-            "color": "xxx-color-blue",
-            "iconClass": "/page/image/icon_leftmenu09.png",
-            "seconds": [
-                {
-                    "ID": "afawfa2",
-                    "CREATEDATETIME": 1503633639000,
-                    "DESCRIPTION": "",
-                    "ICONCLS": "",
-                    "NAME": "系统维护",
-                    "SEQ": 4,
-                    "TARGET": "",
-                    "UPDATEDATETIME": 1503633639000,
-                    "URL": "",
-                    "SYRESOURCE_ID": "a22ab3wb2",
-                    "SYRESOURCETYPE_ID": "0",
-                    "haveFourth": 1,
-                    "thirds": [
-                        {
-                            "ID": "afa2fa",
-                            "CREATEDATETIME": 1466414417000,
-                            "DESCRIPTION": "",
-                            "ICONCLS": "",
-                            "NAME": "功能使用统计",
-                            "SEQ": 4,
-                            "TARGET": "",
-                            "UPDATEDATETIME": 1503633686000,
-                            "URL": "/xxx.do?ba32b522",
-                            "SYRESOURCE_ID": "a2b5235",
-                            "SYRESOURCETYPE_ID": "0",
-                            "color": "",
-                            "iconClass": "icon-unlock-alt",
-                            "fourths": []
-                        },
-                        {
-                            "ID": "afa2f2a445",
-                            "CREATEDATETIME": 1504236483000,
-                            "DESCRIPTION": "数据库监控相关操作",
-                            "ICONCLS": "",
-                            "NAME": "数据库监控",
-                            "SEQ": 14,
-                            "TARGET": "",
-                            "UPDATEDATETIME": 1504236483000,
-                            "URL": "",
-                            "SYRESOURCE_ID": "SYRESOURCE_IDxx",
-                            "SYRESOURCETYPE_ID": "0",
-                            "fourths": [
-                                {
-                                    "ID": "2bab525",
-                                    "CREATEDATETIME": 1504236647000,
-                                    "DESCRIPTION": "数据库信息查看",
-                                    "ICONCLS": "",
-                                    "NAME": "数据库信息查看",
-                                    "SEQ": 1,
-                                    "TARGET": "",
-                                    "UPDATEDATETIME": 1504236782000,
-                                    "URL": "/xxx.do?xxx",
-                                    "SYRESOURCE_ID": "SYRESOURCE_IDawdwa",
-                                    "SYRESOURCETYPE_ID": "0"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+          "ID": "ab542b5b25a",
+          "CREATEDATETIME": 1517818707000,
+          "DESCRIPTION": "",
+          "ICONCLS": "ext-icon-folder_user",
+          "NAME": "用户视图",
+          "SEQ": 4,
+          "TARGET": "",
+          "UPDATEDATETIME": 1517818707000,
+          "URL": "http://www.baidu.com",
+          "SYRESOURCE_ID": "haerhh123515",
+          "SYRESOURCETYPE_ID": "0",
+          "haveFourth": -1,
+          "thirds": []
         }
-    ]
+      ]
+    },
+    {
+      "ID": "fawfaf244",
+      "CREATEDATETIME": 1458248395000,
+      "DESCRIPTION": "管理系统的资源、角色、机构、用户等信息",
+      "ICONCLS": "",
+      "NAME": "系统管理",
+      "SEQ": 40,
+      "TARGET": "",
+      "UPDATEDATETIME": 1502706964000,
+      "URL": "",
+      "SYRESOURCE_ID": "",
+      "SYRESOURCETYPE_ID": "0",
+      "color": "xxx-color-blue",
+      "iconClass": "/page/image/icon_leftmenu09.png",
+      "seconds": [
+        {
+          "ID": "afawfa2",
+          "CREATEDATETIME": 1503633639000,
+          "DESCRIPTION": "",
+          "ICONCLS": "",
+          "NAME": "系统维护",
+          "SEQ": 4,
+          "TARGET": "",
+          "UPDATEDATETIME": 1503633639000,
+          "URL": "",
+          "SYRESOURCE_ID": "a22ab3wb2",
+          "SYRESOURCETYPE_ID": "0",
+          "haveFourth": 1,
+          "thirds": [
+            {
+              "ID": "afa2fa",
+              "CREATEDATETIME": 1466414417000,
+              "DESCRIPTION": "",
+              "ICONCLS": "",
+              "NAME": "功能使用统计",
+              "SEQ": 4,
+              "TARGET": "",
+              "UPDATEDATETIME": 1503633686000,
+              "URL": "/xxx.do?ba32b522",
+              "SYRESOURCE_ID": "a2b5235",
+              "SYRESOURCETYPE_ID": "0",
+              "color": "",
+              "iconClass": "icon-unlock-alt",
+              "fourths": []
+            },
+            {
+              "ID": "afa2f2a445",
+              "CREATEDATETIME": 1504236483000,
+              "DESCRIPTION": "数据库监控相关操作",
+              "ICONCLS": "",
+              "NAME": "数据库监控",
+              "SEQ": 14,
+              "TARGET": "",
+              "UPDATEDATETIME": 1504236483000,
+              "URL": "",
+              "SYRESOURCE_ID": "SYRESOURCE_IDxx",
+              "SYRESOURCETYPE_ID": "0",
+              "fourths": [
+                {
+                  "ID": "2bab525",
+                  "CREATEDATETIME": 1504236647000,
+                  "DESCRIPTION": "数据库信息查看",
+                  "ICONCLS": "",
+                  "NAME": "数据库信息查看",
+                  "SEQ": 1,
+                  "TARGET": "",
+                  "UPDATEDATETIME": 1504236782000,
+                  "URL": "/xxx.do?xxx",
+                  "SYRESOURCE_ID": "SYRESOURCE_IDawdwa",
+                  "SYRESOURCETYPE_ID": "0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
