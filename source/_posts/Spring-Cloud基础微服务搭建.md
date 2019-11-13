@@ -46,7 +46,14 @@ spring-boot版本：1.5.19.RELEASE
 * 开发环境工具：
 [maven3+](https://maven.apache.org/) \ [Git](https://git-scm.com/)
 * spring-cloud-frame工程: 
-[下载demo工程](https://github.com/fiendoghx/spring-cloud-frame)
+[下载demo工程](https://github.com/fiendoghx/spring-cloud-frame/tree/base-springboot1)
+
+PS: demo工程配置了哪些内容：
+1. 网关服务和具体服务访问eureka注册中心Security用户名密码校验
+2. 服务里的负载ribbon超时重试，以及hystrix熔断配置，以及短路配置
+3. 网关服务的总连接数，路由连接数及采用策略配置
+4. 各服务于注册中心的心跳和续约时间，超期及时剔除服务配置
+5. 配置了logback日志info于warn、error分开按日期存放
 
 服务器以及构建工具的事前准备不在本文讨论范围，请自行搜索准备
 
