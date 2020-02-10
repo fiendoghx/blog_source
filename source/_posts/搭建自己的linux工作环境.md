@@ -45,6 +45,12 @@ centos7.1没有wifi-GUI GUI联网得用wap_suplication
 
 安装vmware player
 
+............ 经过了断断续续，三天打鱼两天晒网的摸索，还是决定平时出门所用笔记本仍然采用windows，不过可以保留一台centos作为虚机和centos操作训练使用。主要有以下几点特别影响使用，以后如果能够解决再进行一试：
 
+1.vmware没有找到centos中运行的破解版，买不起正版- -||
 
-.......未完待续
+2.翻墙梯子在centos下，采用privoxy+ssl的形式使用后，还需要在chrome里下载代理插件设置代理才能够访问，不方便。另外采用privoxy之后yum源也被设定为通过privoxy访问，很依赖梯子的稳定访问，而我采用的vultr的vps地址经常会被GFW给禁掉。
+
+3.图片处理，centos上并没有一款非常好用的图片处理软件，仍然是需要搭建C的环境来处理。
+
+4.社交工具，原来windows上使用微信、钉钉、QQ、邮箱。没有在centos上找到好用的对应方案。
