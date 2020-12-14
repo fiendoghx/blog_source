@@ -63,9 +63,9 @@ fi
 ./kafka-server-start.sh -daemon ../conf/server.properties
 
 第十步：启动producer和consumer验证
-./kafka-console-producer --broker-list host.name:port --topic test_sasl --producer.property security.protocol=SASL_PLAINTEXT --producer.property sasl.mechanism=PLAIN
+./kafka-console-producer --broker-list host.name:port --topic test_sasl --producer.config /opt/kafka/producer.properties
 
-./kafka-console-producer --bootstrap-server host.name:port --topic test_sasl --consumer.property security.protocol=SASL_PLAINTEXT --consumer.property sasl.mechanism=PLAIN --from-beginning
+./kafka-console-consumer --bootstrap-server host.name:port --topic test_sasl  --consumer.config /opt/kafka/consumer.properties --from-beginning
 
 
 PS:
