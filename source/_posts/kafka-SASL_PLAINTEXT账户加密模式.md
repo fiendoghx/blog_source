@@ -70,5 +70,8 @@ fi
 
 PS:
 java中连接kafka配置：
+System.setProperty("java.security.auth.login.config","/opt/kafka/kafka_client_jass.conf");
+props.put("security.protocol","SASL_PLAINTEXT");
+props.put("sasl.mechanism","PLAIN");
 props.put("sasl.jaas.config",
 		"org.apache.kafka.common.security.plain.PlainLoginModule required username=\"admin\" password=\"admin\";");
