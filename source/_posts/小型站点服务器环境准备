@@ -1,0 +1,15 @@
+1.软件环境：
+
+cd /opt
+
+mysql-5.7.29
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.29-linux-glibc2.12-x86_64.tar
+
+nginx 
+wget http://nginx.org/download/nginx-1.19.5.tar.gz
+
+tar -xvf nginx-1.19.5.tar.gz
+cd nginx-1.19.5.tar.gz
+
+
+搞了这么多文档，使用起来还是不方便，还是准备做docket镜像吧，骚年！
